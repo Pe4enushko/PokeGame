@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace Poke.Logic
 {
-    public class Creature : IOpponent
+    public partial class Creature : IOpponent
     {
         #region Stats
         int _health;
@@ -57,7 +57,8 @@ namespace Poke.Logic
         public int Evasion {get => _evasion + GetBuffedStat();
         set
         {
-            _evasion = value;
+            if (value < 0 || Evasion < 80)
+                _evasion = value;
         }}
         // Additional accuracy
         public int AdditionalAccuracy {get =>  GetBuffedStat();}

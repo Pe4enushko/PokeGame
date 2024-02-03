@@ -4,7 +4,7 @@ using Poke.Logic.Player;
 
 namespace Poke.Logic
 {
-    public class Tile : ColorRect
+    public partial class Tile : ColorRect
     {
         public event EventHandler onVisit;
         public bool Visited = false;

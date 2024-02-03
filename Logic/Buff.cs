@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Poke.Logic
 {
-    public class Buff
+    public partial class Buff
     {
         public int Value;
         public string BuffStatName;

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using Poke.Logic;
 
-public class Map : Control
+public partial class Map : Node2D
 {
 	public Tile[] Tiles;
 	Tile CurrentTile;

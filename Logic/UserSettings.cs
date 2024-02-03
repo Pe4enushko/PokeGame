@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Poke.Logic
 {
-    public class UserSettings
+    public partial class UserSettings
     {
         //squad = IDs of creatures
         int[] _squad {get;}

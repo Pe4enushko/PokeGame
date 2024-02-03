@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://crhhqdimeb7lx"]
+
+[ext_resource type="Script" path="res://Logic/Player.gd" id="1_0dke7"]
+[ext_resource type="Texture2D" uid="uid://bxy1hm7u6wi7g" path="res://Images/Pokes/None.jpg" id="2_u6v6d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83eyq"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_0dke7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, -4.76837e-07)
+scale = Vector2(0.0571429, 0.0761905)
+texture = ExtResource("2_u6v6d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_83eyq")
+
+[node name="Camera2D" type="Camera2D" parent="."]

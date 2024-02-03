@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Poke.Logic
 {
-    public class Item
+    public partial class Item
     {
         
     }

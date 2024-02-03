@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Poke.Logic
 {
-    public class Attack
+    public partial class Attack
     {
         public Attack(string title, float power, int accuracy, float penetration, int charges, Buff[] Buffs = null) 
         {

@@ -6,12 +6,13 @@ using Poke.Logic;
 
 namespace Poke.Logic.Player
 {
-    public class PlayerSingleton
+    public partial class PlayerSingleton
     {
         public string Name;
         static PlayerSingleton singleton;
         static object locker = new object();
         public Creature PlayerCreature;
+        public int OpponentToFightId;
         public static PlayerSingleton GetPlayer()
         {
             lock (locker)

@@ -6,7 +6,7 @@ using Godot;
 
 namespace Poke.Logic.Scene
 {
-    public class AttackButton : Button
+    public partial class AttackButton : Button
     {
         public override void _Ready()
         {
