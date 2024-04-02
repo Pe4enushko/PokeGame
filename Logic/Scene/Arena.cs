@@ -25,23 +25,18 @@ namespace Poke.Logic.Scene
 		set
 		{
 			PlayerSingleton.GetPlayer().SetCreature(value);
-			ImageTexture texture = new ImageTexture();
-			texture = ImageTexture.CreateFromImage(Image.LoadFromFile("res://Images/Pokes/" + value.ImageFileTitle));
-			GetNode<TextureRect>("LeftCreature").Texture = texture;
+			GetNode<TextureRect>("LeftCreature").Texture = ImageTexture.CreateFromImage(Image.LoadFromFile("res://Images/Pokes/" + value.ImageFileTitle));
 		}}
 		Creature Opponent {get => _opponent;
 		set
 		{
 			_opponent = value;
 			GD.Print("Opponent image is at " + value.ImageFileTitle);
-			ImageTexture texture = new ImageTexture();
-			texture = ImageTexture.CreateFromImage(Image.LoadFromFile("res://Images/Pokes/" + value.ImageFileTitle));
-			GetNode<TextureRect>("RightCreature").Texture = texture;
+			GetNode<TextureRect>("RightCreature").Texture = ImageTexture.CreateFromImage(Image.LoadFromFile("res://Images/Pokes/" + value.ImageFileTitle));
 		}}
 		HBoxContainer ButtonsContainer {get;set;}
 		Label LeftHp {get;set;}
 		Label RightHp {get;set;}
-		// Called when the node enters the scene tree for the first time.
 		
 		int _oppId;
 		bool _initBySingleton = false;
@@ -68,17 +63,21 @@ namespace Poke.Logic.Scene
 
 			Load(_oppId);
 			LoadButtons();
+
 			GD.Print("Loaded all things");
 			GD.Print("Opponent is here");
 
 			Opponent.Died += (obj,e) => {
 				GD.Print("the opponent dude is ded");
 				RightHp.Text = "Ded";
-				PlayerWon?.Invoke(this, null);};
+				PlayerWon?.Invoke(this, null);
+			};
+
 			Player.Died += (obj,e) => {
 				GD.Print("U are ded. Not big soup rice"); 
 				LeftHp.Text = "Ded";
-				PlayerLost?.Invoke(this, null);};
+				PlayerLost?.Invoke(this, null);
+			};
 
 			PlayerWon += Win;
 			PlayerLost += Lose;
@@ -87,13 +86,10 @@ namespace Poke.Logic.Scene
 			if(Player.Speed != Opponent.Speed)
 				turn = Player.Speed > Opponent.Speed ? 1 : 0;
 			else
-			{
 				turn = new Random().Next(0,2);
-			}
+
 			if(!isYourTurn)
-			{
 				OpponentAttack();
-			}
 		}
 		
 		
@@ -128,7 +124,7 @@ namespace Poke.Logic.Scene
 			
 			ButtonsContainer.Visible = true;
 		}      
-		public void SkipTurn()
+		public void FinishTurn()
 		{
 			turn += 1;
 		}
@@ -162,10 +158,9 @@ namespace Poke.Logic.Scene
 					Opponent.TakeAttack(Player.Attacks[attackNumber],Player, out float dmg);
 					
 					GD.Print($"Opponent recieved {dmg} damage");
-					
 				}
-				turn += 1;
 
+				FinishTurn();
 				// Противник кидает ответочку
 				OpponentAttack();
 				
@@ -193,12 +188,9 @@ namespace Poke.Logic.Scene
 			 " evasion = " + Player.Evasion + "\n");
 			
 			if(didRecieve)
-			{
 				RecieveAttack(oppAtkNum);
-				turn += 1;
-			}
-			else
-				SkipTurn();
+
+			FinishTurn();
 
 			return didRecieve;
 		}

@@ -16,7 +16,6 @@ public partial class gdsDbWorkerInterface : GodotObject
         buffer = (long)typeof(DBWorker)
             .GetMethod("gdsCreaturesCount")
             .Invoke(null, null);
-        GD.Print($"{buffer} (creaturecount from C#)");
     }
     public void SetPlayerCreature(int id)
     {
